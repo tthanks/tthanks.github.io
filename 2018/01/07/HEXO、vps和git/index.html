@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/07/HEXO、vps和git/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="花了整整一周，每周晚上都到挺晚的。终于完成了把HEXO部署到了VPS上，同时可以通过git的方式快速的进行发布，参照了网上的许多经验，同时也踩了许多坑，大致总结下。 大致的步骤参照的是这个帖子：使用Nginx+Hexo光速搭建博客并实现服务器自动部署 里面有一些更新的小步骤 一、本地安装hexo并初始化项目这里的本地是指发布的内容的客户端，mac、linux和windows各自采用不同的工具。分别">
-<meta property="og:updated_time" content="2018-01-08T14:27:19.000Z">
+<meta property="og:updated_time" content="2018-01-08T14:29:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HEXO、vps和git">
 <meta name="twitter:description" content="花了整整一周，每周晚上都到挺晚的。终于完成了把HEXO部署到了VPS上，同时可以通过git的方式快速的进行发布，参照了网上的许多经验，同时也踩了许多坑，大致总结下。 大致的步骤参照的是这个帖子：使用Nginx+Hexo光速搭建博客并实现服务器自动部署 里面有一些更新的小步骤 一、本地安装hexo并初始化项目这里的本地是指发布的内容的客户端，mac、linux和windows各自采用不同的工具。分别">
@@ -92,11 +92,12 @@
 <h3 id="一、本地安装hexo并初始化项目"><a href="#一、本地安装hexo并初始化项目" class="headerlink" title="一、本地安装hexo并初始化项目"></a>一、本地安装hexo并初始化项目</h3><p>这里的本地是指发布的内容的客户端，mac、linux和windows各自采用不同的工具。分别安装git、node。我用的是mac，安装git的时候可能会有些报错，如果遇到报错度娘一下，有些错误可以忽略，有些可能是地址无法访问到。</p>
 <h3 id="二、服务器（VPS）侧"><a href="#二、服务器（VPS）侧" class="headerlink" title="二、服务器（VPS）侧"></a>二、服务器（VPS）侧</h3><p>在自己的虚拟机上要安装Nginx、建立信任关系。服务器测的配置可以参考这个帖子：<a href="http://blog.csdn.net/fjinhao/article/details/77096951" target="_blank" rel="noopener">优化hexo访问速度-将hexo部署到云主机VPS</a>，包括对git账户的配置，要注意的是，nginx.conf，这个文件并不在这个/etc/nginx/目录下，而是在/etc/nginx/conf.d目录下，这个问题困惑了我好久。另外，关于免密登陆，建议另外参考百度中ssh免密登陆的方法。</p>
 <h3 id="三、自动部署"><a href="#三、自动部署" class="headerlink" title="三、自动部署"></a>三、自动部署</h3><p>自动部署中如何同时可以发布github和vps，网上的经验似乎不太对，还需要再试验一下。实际部署时如果遇到错误建议一个一个试一下。</p>
+<p>最后，终于可以愉快的［hexo clean &amp;&amp; hexo g -d］啦</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/07/HEXO、vps和git/" data-id="cjc6axfvz0000qgx3o9xp2cib" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/01/07/HEXO、vps和git/" data-id="cjc6azk4c0000r1x3sjlj2hcz" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT技术/">IT技术</a></li></ul>
