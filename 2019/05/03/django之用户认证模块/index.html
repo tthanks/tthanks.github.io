@@ -110,18 +110,18 @@
   <meta name="keywords" content="python," />
 
 
-<meta name="description" content="按照《Pyhon编程：从入门到实践》中的教程，写到django用户login时，发生了错误。 123456from django.contrib.auth.views import loginfrom . import views urlpatterns = [ # 登录页面 url(r&apos;^login/$&apos;, login, &amp;#123;&apos;template_name&apos;: &apos;users/login.h">
+<meta name="description" content="按照《Pyhon编程：从入门到实践》中的教程，有些命令由于Django版本不同，会有错误。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django之用户认证模块">
 <meta property="og:url" content="http://yoursite.com/2019/05/03/django之用户认证模块/index.html">
 <meta property="og:site_name" content="行知录">
-<meta property="og:description" content="按照《Pyhon编程：从入门到实践》中的教程，写到django用户login时，发生了错误。 123456from django.contrib.auth.views import loginfrom . import views urlpatterns = [ # 登录页面 url(r&apos;^login/$&apos;, login, &amp;#123;&apos;template_name&apos;: &apos;users/login.h">
+<meta property="og:description" content="按照《Pyhon编程：从入门到实践》中的教程，有些命令由于Django版本不同，会有错误。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-03T08:45:58.628Z">
+<meta property="og:updated_time" content="2019-05-05T15:14:57.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django之用户认证模块">
-<meta name="twitter:description" content="按照《Pyhon编程：从入门到实践》中的教程，写到django用户login时，发生了错误。 123456from django.contrib.auth.views import loginfrom . import views urlpatterns = [ # 登录页面 url(r&apos;^login/$&apos;, login, &amp;#123;&apos;template_name&apos;: &apos;users/login.h">
+<meta name="twitter:description" content="按照《Pyhon编程：从入门到实践》中的教程，有些命令由于Django版本不同，会有错误。">
 
 
 
@@ -383,11 +383,20 @@
       
 
       
-        <p>按照《Pyhon编程：从入门到实践》中的教程，写到django用户login时，发生了错误。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.views <span class="keyword">import</span> login</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line">urlpatterns = [ </span><br><span class="line"><span class="comment"># 登录页面 </span></span><br><span class="line">url(<span class="string">r'^login/$'</span>, login, &#123;<span class="string">'template_name'</span>: <span class="string">'users/login.html'</span>&#125;, name=<span class="string">'login'</span>), </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+        <p>按照《Pyhon编程：从入门到实践》中的教程，有些命令由于Django版本不同，会有错误。</p>
+<a id="more"></a>
+
+问题一：写到django用户login时，发生了错误。
+
+<escape><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.views <span class="keyword">import</span> login</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line">urlpatterns = [ </span><br><span class="line"><span class="comment"># 登录页面 </span></span><br><span class="line">url(<span class="string">r'^login/$'</span>, login, &#123;<span class="string">'template_name'</span>: <span class="string">'users/login.html'</span>&#125;, name=<span class="string">'login'</span>), </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>原因还是django的版本不同造成的，经过排查，修改为如下后正常。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.views <span class="keyword">import</span> LoginView</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line">app_name = <span class="string">'users'</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line"> <span class="comment"># 登录页面</span></span><br><span class="line">url(<span class="string">r'^login/$'</span>, LoginView.as_view(template_name=<span class="string">'users/login.html'</span>), name=<span class="string">'login'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
+<p>问题二：logout模块导入出错</p>
+<p>老版本用的是下列的模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</span><br></pre></td></tr></table></figure>
+<p>新版本的句式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br></pre></td></tr></table></figure>
+</escape>
       
     </div>
 
@@ -429,6 +438,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/05/《Pyhon编程：从入门到实践》之19章学习心得/" rel="prev" title="《Pyhon编程：从入门到实践》之19章学习心得">
+                《Pyhon编程：从入门到实践》之19章学习心得 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -497,7 +510,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
